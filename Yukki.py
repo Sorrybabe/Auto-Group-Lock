@@ -9,11 +9,12 @@ import logging
 import os
 import psutil
 import time
+from time import 
 from datetime import datetime
 from pyrogram import Client, idle, filters
 from pyrogram.types import Message
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-import time
+from timesexy import get_readable_time
 
 print("[INFO]: INITIALIZING DATABASE")
 MONGODB_CLI = MongoClient(MONGO_DB_URI)
@@ -47,7 +48,7 @@ Uptime: {get_readable_time((bot_uptime))}'''
     return stats
 
 
-@app.on_message(filters.command(["ping", "start", "alive"]) & filters.user(SUDO_USERS))
+@Client.on_message(filters.command(["ping", "start", "alive"]) & filters.user(SUDO_USERS))
 async def ping(_, message):
     start = datetime.now()
     uptime = await bot_sys_stats()
