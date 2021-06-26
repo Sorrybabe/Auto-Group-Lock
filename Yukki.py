@@ -1,8 +1,8 @@
 print("[INFO]: INITIALIZING")
 from pyrogram import Client
 import asyncio
-from .config import API_ID, API_HASH, BOT_TOKEN, MONGO_DB_URI, SUDO_USERS, LOG_ID
-from otor.motor_asyncio import AsyncIOMotorClient as MongoClient
+from config import API_ID, API_HASH, BOT_TOKEN, MONGO_DB_URI, SUDO_USERS, LOG_ID
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import time
 import uvloop
 import logging
