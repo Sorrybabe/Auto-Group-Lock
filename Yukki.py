@@ -10,8 +10,8 @@ import os
 import psutil
 import time
 from datetime import datetime
-from pyrogram import Client as Bot
-from pyrogram import Client, idle
+from pyrogram import Client, idle, filters
+from pyrogram.types import Message
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import time
 
