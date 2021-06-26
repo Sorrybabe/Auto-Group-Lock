@@ -46,13 +46,13 @@ Uptime: {get_readable_time((bot_uptime))}'''
     return stats
 
 
-@app.on_message(filters.command("ping"))
+@app.on_message(filters.command(["ping", "start", "alive"]))
 async def ping(_, message):
     start = datetime.now()
     uptime = await bot_sys_stats()
     end = datetime.now()
     resp = (end - start).microseconds / 1000
-    await message.reply_text(f"**Alive!**\n**Responding in**`⚡{resp} ms`\n\n<b><u>Uptime:</u></b>{uptime}")   
+    await message.reply_text(f"**Alive!**\n**Responding in**{resp} ms\n\n<b><u>Uptime:</u></b>{uptime}")   
 
 
 
