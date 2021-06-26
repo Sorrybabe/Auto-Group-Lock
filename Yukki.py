@@ -46,7 +46,7 @@ Uptime: {get_readable_time((bot_uptime))}'''
     return stats
 
 
-@Client.on_message(filters.command(["ping", "start", "alive"]) & filters.user(SUDO_USERS))
+@app.on_message(filters.command("ping"))
 async def ping(_, message):
     start = datetime.now()
     uptime = await bot_sys_stats()
