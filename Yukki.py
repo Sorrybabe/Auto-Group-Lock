@@ -8,8 +8,6 @@ import uvloop
 import logging
 import os
 import psutil
-import time
-from time import 
 from datetime import datetime
 from pyrogram import Client, idle, filters
 from pyrogram.types import Message
