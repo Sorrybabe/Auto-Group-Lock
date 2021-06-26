@@ -10,4 +10,4 @@ COMMAND_PREFIXES = list(getenv('COMMAND_PREFIXES', '/ !').split())
 MONGO_DB_URI = getenv("MONGO_DB_URI")
 SUDO_USERS = list(map(int, getenv('SUDO_USERS', '').split()))
 LOGID = int(getenv("LOG_GROUP_ID", ''))
-ASS_ID = int(getenv("ASS_ID", ''))
+
