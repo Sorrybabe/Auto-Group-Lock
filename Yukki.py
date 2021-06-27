@@ -18,10 +18,9 @@ print("[INFO]: INITIALIZING DATABASE")
 MONGODB_CLI = MongoClient(MONGO_DB_URI)
 db = MONGODB_CLI.wbb
 
-
 YUKKI_START_TIME = time.time()
 
-
+timesmode = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", 13" , "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",]
 
 print("[INFO]: INITIALIZING BOT CLIENT")
 app = Client(
@@ -36,24 +35,29 @@ app.start()
 print("[INFO]: STARTED")
 
 
-async def bot_sys_stats():
-    bot_uptime = int(time.time() - YUKKI_START_TIME)
-    cpu = psutil.cpu_percent(interval=0.5)
-    mem = psutil.virtual_memory().percent
-    disk = psutil.disk_usage("/").percent
-    stats = f'''
-Uptime: {get_readable_time((bot_uptime))}'''
-    return stats
-
-
 @app.on_message(filters.command(["ping", "start", "alive"]))
 async def ping(_, message):
     start = datetime.now()
-    uptime = await bot_sys_stats()
+    bot_uptime = int(time.time() - YUKKI_START_TIME)
     end = datetime.now()
     resp = (end - start).microseconds / 1000
-    await message.reply_text(f"**Alive!**\n**Responding in**{resp} ms\n\n<b><u>Uptime:</u></b>{uptime}")   
-
+    await message.reply_text(f"**Alive!**\n**Responding in** {resp} ms\n\n<b><u>Uptime:</u></b>{get_readable_time((bot_uptime))}")   
+    
+    
+@app.on_message(filters.command("Lock_on"))
+async def on(_, message):             
+    usage = f"This isn't a time.\n\nSelect from 0-23 where 0 is 00:00 AM and 23 is 11:00 PM\n\n"
+    if len(message.command) != 2:
+        return await message.reply_text(usage)
+    timer = message.text.split(None, 1)[1].strip()
+    if theme not in themes:
+        return await message.reply_text(usage)
+    note = {
+        "theme": timer,
+    }
+    await save_theme(message.chat.id, "timeon", note)  
+    await message.reply_text(f"Changed Group Lock Time to {theme}")         
+   
 
 
 
